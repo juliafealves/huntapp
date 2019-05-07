@@ -7,6 +7,10 @@ class Main extends Component {
     title: "JSHunt"
   };
 
+  state = {
+    docs: []
+  };
+
   componentDidMount() {
     this.loadProducts();
   }
@@ -14,13 +18,15 @@ class Main extends Component {
   loadProducts = async () => {
     const response = await api.get("/products");
     const { docs } = response.data;
-    console.log(docs);
+    this.setState({ docs });
   };
 
   render() {
     return (
       <View>
-        <Text>Página Main.</Text>
+        {this.state.docs.map(product => (
+          <Text key={product._id}>{product.title}</Text>
+        ))}
       </View>
     );
   }
