@@ -15,10 +15,26 @@ class Main extends Component {
         this.loadProducts();
     }
 
-    loadProducts = async () => {
-        const response = await api.get("/products");
-        const { docs } = response.data;
-        this.setState({ docs });
+    loadMore = () => {
+        const { page, productInfo } = this.state;
+
+        if (page != productInfo.pages) {
+            this.loadProducts(page + 1);
+        }
+    };
+
+    loadProducts = async (page = 1) => {
+        const response = await api.get(`/products?page=${page}`);
+        const { docs, ...productInfo } = response.data;
+        this.setState({
+            docs: [
+                ...this.state.docs,
+                ...docs
+            ],
+            productInfo,
+            page
+        })
+        ;
     };
 
     renderItem = ({ item }) => (
@@ -42,6 +58,8 @@ class Main extends Component {
                     data={this.state.docs}
                     keyExtractor={item => item._id}
                     renderItem={this.renderItem}
+                    onEndReached={this.loadMore}
+                    onEndReachedThreshold={0.1}
                 />
             </View>
         );
@@ -65,6 +83,11 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     productTitle: {
+        fontSize: 16,
+        fontWeight: "bold",
+        color: "#333"
+    },
+    productDescription: {
         fontSize: 16,
         color: "#999",
         marginTop: 5,
