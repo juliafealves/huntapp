@@ -43,8 +43,7 @@ class Main extends Component {
             <Text style={styles.productDescription}>{item.description}</Text>
             <TouchableOpacity
                 style={styles.productButton}
-                onPress={() => {
-                }}>
+                onPress={() => this.props.navigation.navigate("Product", { product: item })}>
                 <Text style={styles.productButtonText}>Acessar</Text>
             </TouchableOpacity>
         </View>
