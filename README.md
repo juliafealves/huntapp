@@ -1,4 +1,4 @@
-# Hunt App
+# :phone: Hunt App
 
 This project is a small example of how to construct an application with React Native. This project developed through the course "React Native Starter by RocketSeat.". In this example was used the component: FlatList with Infinite Scroll, use the Axios library to access web service and WebView to show products.
 
