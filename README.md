@@ -11,7 +11,7 @@ This project is a small example of how to construct an application with React Na
 
 2. Clone this repository:
 ```
-git clone 
+git clone https://github.com/juliafealves/huntapp.git
 ```
 
 3. Insider project, execute:
